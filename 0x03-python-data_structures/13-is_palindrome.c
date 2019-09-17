@@ -38,7 +38,8 @@ int is_palindrome(listint_t **head)
 
 	if (*head == NULL)
 		return (1);
-	for (len = 1; runback->next != NULL; len++) /* gets length of list */
+	/* get len and set runback to last node */
+	for (len = 1; runback->next != NULL; len++)
 		runback = runback->next;
 
 	return (recur_pal(*head, runback, len));
