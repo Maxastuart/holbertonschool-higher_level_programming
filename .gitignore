@@ -14,7 +14,10 @@
 
 # Ignore main files
 **/*main.c
+<<<<<<< HEAD
 **/*main.py
+=======
+>>>>>>> ded71272961eff64b12f1703f394ed2b7ca23212
 
 # Ignore object files and libraries
 *.o
@@ -25,8 +28,11 @@
 # ignore _putchar.c and a.out
 **/_putchar.c
 **/a.out
+<<<<<<< HEAD
 
 # Ignore OS generated files
 .DS_Store
 .DS_Store?
 ._*
+=======
+>>>>>>> ded71272961eff64b12f1703f394ed2b7ca23212
