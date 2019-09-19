@@ -1,10 +1,12 @@
 #!/usr/bin/python3
 def roman_to_int(roman_string):
-    result=0
+    result = 0
     romans = {'I': 1, 'V': 5, 'X': 10, 'L': 50, 'C': 100, 'D': 500, 'M': 1000}
 
     if len(roman_string) is None:
-        return
+        return 0
+    elif not isinstance(roman_string, str):
+        return 0
     elif len(roman_string) == 1:
         return romans[roman_string]
     '''make a list of each letter in the string and the one following it'''
