@@ -5,9 +5,12 @@ def roman_to_int(roman_string):
 
     if len(roman_string) is None:
         return 0
-    elif not isinstance(roman_string, str):
+    if not isinstance(roman_string, str):
         return 0
-    elif len(roman_string) == 1:
+    for x in roman_string:
+        if not romans[x]:
+            return 0
+    if len(roman_string) == 1:
         return romans[roman_string]
     '''make a list of each letter in the string and the one following it'''
     for i, n in zip(roman_string, roman_string[1:]):
