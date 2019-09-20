@@ -6,9 +6,9 @@ def roman_to_int(roman_string):
 
     if roman_string is None:
         return 0
-    if len(roman_string) is None:
-        return 0
     if not isinstance(roman_string, str):
+        return 0
+    if len(roman_string) is None:
         return 0
     for x in roman_string:
         if x not in romans:
