@@ -8,7 +8,7 @@ def roman_to_int(roman_string):
     if not isinstance(roman_string, str):
         return 0
     for x in roman_string:
-        if not romans[x]:
+        if x not in romans:
             return 0
     if len(roman_string) == 1:
         return romans[roman_string]
