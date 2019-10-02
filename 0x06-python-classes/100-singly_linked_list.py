@@ -9,7 +9,7 @@ class Node:
         """
         if not isinstance(data, int):
             raise TypeError("data must be an integer")
-        if not next_node == None or isinstance(next_node, Node):
+        if next_node is not None or not isinstance(next_node, Node):
             raise TypeError("next_node must be a Node object")
         self.data = data
         self.next_node = next_node
@@ -38,7 +38,7 @@ class Node:
         """Set the value of the next node.
         value (Node): the new next_node to point to
         """
-        if not value == None or isinstance(value, Node):
+        if value is not None or not isinstance(value, Node):
             raise TypeError("next_node must be a Node object")
         self.__next_node = value
 
@@ -72,12 +72,12 @@ class SinglyLinkedList:
         value (int): the value to store at the new node in the list
         """
         new_node = Node(value)
-        if self.__head == None:
+        if self.__head is None:
             self.__head = new_node
         elif value <= self.__head._Node__data:
             new_node._Node__next_node = self.__head
             self.__head = new_node
-        elif self.__head._Node__next_node == None:
+        elif self.__head._Node__next_node is None:
             self.__head._Node__next_node = new_node
         else:
             temp = self.__head
