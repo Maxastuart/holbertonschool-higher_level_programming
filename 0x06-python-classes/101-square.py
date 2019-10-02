@@ -22,7 +22,7 @@ class Square:
             if i > 0:
                 square_string += "\n"
             square_string += "{}".format(' ' * self.__position[0] +
-                                           '#' * self.__size)
+                                         '#' * self.__size)
         return square_string
 
     @property
