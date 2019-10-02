@@ -9,7 +9,7 @@ class Node:
         """
         if not isinstance(data, int):
             raise TypeError("data must be an integer")
-        if next_node is not None or not isinstance(next_node, Node):
+        if next_node is not None and not isinstance(next_node, Node):
             raise TypeError("next_node must be a Node object")
         self.data = data
         self.next_node = next_node
@@ -38,7 +38,7 @@ class Node:
         """Set the value of the next node.
         value (Node): the new next_node to point to
         """
-        if value is not None or not isinstance(value, Node):
+        if value is not None and not isinstance(value, Node):
             raise TypeError("next_node must be a Node object")
         self.__next_node = value
 
