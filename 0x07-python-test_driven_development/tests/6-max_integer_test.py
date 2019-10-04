@@ -18,6 +18,23 @@ class TestMaxInteger(unittest.TestCase):
     def test_string(self):
         self.assertEqual(max_integer("string"), 't')
 
+    def test_nothing(self):
+        self.assertEqual(max_integer(), None)
+
+    def test_empty_list(self):
+        self.assertEqual(max_integer([]), None)
+
+    def test_list_of_negatives(self):
+        self.assertEqual(max_integer([-1, -99, -54]), -1)
+
     def test_key_error(self):
         with self.assertRaises(KeyError):
             max_integer({5 : 6})
+
+    def test_type_error_too_many_args(self):
+        with self.assertRaises(TypeError):
+            max_integer('tuple', 'ofstrings')
+
+    def test_type_error_on_incomparable_list_items(self):
+        with self.assertRaises(TypeError):
+            max_integer([[], {}])
