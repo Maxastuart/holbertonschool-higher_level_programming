@@ -49,44 +49,44 @@ class Rectangle(Base):
         """Set the width of the rectangle.
         value (int): the new length of the width.
         """
-        self.__width = value
         if not isinstance(value, int):
             raise TypeError("width must be an integer")
         if value <= 0:
             raise ValueError("width must be > 0")
+        self.__width = value
 
     @height.setter
     def height(self, value):
         """Set the height of the rectangle.
         value (int): the new length of the height.
         """
-        self.__height = value
         if not isinstance(value, int):
             raise TypeError("height must be an integer")
         if value <= 0:
             raise ValueError("height must be > 0")
+        self.__height = value
 
     @x.setter
     def x(self, value):
         """Set x.
         value (int): the new x.
         """
-        self.__x = value
         if not isinstance(value, int):
             raise TypeError("x must be an integer")
         if value < 0:
             raise ValueError("x must be >= 0")
+        self.__x = value
 
     @y.setter
     def y(self, value):
         """Set y.
         value (int): the new y.
         """
-        self.__y = value
         if not isinstance(value, int):
             raise TypeError("y must be an integer")
         if value < 0:
             raise ValueError("y must be >= 0")
+        self.__y = value
 
     def area(self):
         """Return the area of the rectangle."""
