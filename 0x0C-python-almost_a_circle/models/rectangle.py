@@ -94,5 +94,7 @@ class Rectangle(Base):
 
     def display(self):
         """Prints the rectangle with #s"""
-        for col in range(self.__height):
-            print('#' * self.__width)
+        for n in range(self.__y):
+            print("")
+        for row in range(self.__height):
+            print(' ' * self.__x + '#' * self.__width)
