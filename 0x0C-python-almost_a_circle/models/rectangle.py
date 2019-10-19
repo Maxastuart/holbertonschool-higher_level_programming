@@ -99,15 +99,18 @@ class Rectangle(Base):
         for row in range(self.__height):
             print(' ' * self.__x + '#' * self.__width)
 
-    def update(self, *args):
+    def update(self, *args, **kwargs):
         """Updates the attributes with the given values."""
-        if args is not None:
+        if args is not None and len(args) > 0:
             self.id = args[0]
-        if len(args) > 1:
-            self.width = args[1]
-        if len(args) > 2:
-            self.height = args[2]
-        if len(args) > 3:
-            self.x = args[3]
-        if len(args) > 4:
-            self.y = args[4]
+            if len(args) > 1:
+                self.width = args[1]
+            if len(args) > 2:
+                self.height = args[2]
+            if len(args) > 3:
+                self.x = args[3]
+            if len(args) > 4:
+                self.y = args[4]
+        elif kwargs is not None:
+            for key, value in kwargs.items():
+                setattr(self, key, value)
