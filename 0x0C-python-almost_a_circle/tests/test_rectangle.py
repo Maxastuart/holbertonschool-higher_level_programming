@@ -197,7 +197,7 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(self.r1.to_dictionary(),
                          {'id': 1, 'width': 1, 'height': 1, 'x': 0, 'y': 0})
         self.assertEqual(self.r201.to_dictionary(),
-                         {'id': 3, 'width': 20, 'height': 10,'x': 1, 'y': 1})
+                         {'id': 3, 'width': 20, 'height': 10, 'x': 1, 'y': 1})
 
     def test_to_json_string(self):
         self.assertEqual(Rectangle.to_json_string(None), "[]")
@@ -218,18 +218,56 @@ class TestRectangle(unittest.TestCase):
 
     def test_create(self):
         nb_prior = Rectangle._Base__nb_objects
-        r98 = Rectangle.create(id=98)
-        self.assertEqual(str(r98), "[Rectangle] (98) 0/0 - 1/1")
+        r90 = Rectangle.create(id=90)
+        self.assertEqual(str(r90), "[Rectangle] (90) 0/0 - 1/1")
+        self.assertEqual(Rectangle._Base__nb_objects, nb_prior + 1)
+        nb_prior = Rectangle._Base__nb_objects
+        r91 = Rectangle.create(id=91, y=1)
+        self.assertEqual(str(r91), "[Rectangle] (91) 0/1 - 1/1")
+        self.assertEqual(Rectangle._Base__nb_objects, nb_prior + 1)
+        nb_prior = Rectangle._Base__nb_objects
+        r92 = Rectangle.create(id=92, x=1)
+        self.assertEqual(str(r92), "[Rectangle] (92) 1/0 - 1/1")
+        self.assertEqual(Rectangle._Base__nb_objects, nb_prior + 1)
+        nb_prior = Rectangle._Base__nb_objects
+        r93 = Rectangle.create(id=93, width=3)
+        self.assertEqual(str(r93), "[Rectangle] (93) 0/0 - 3/1")
+        self.assertEqual(Rectangle._Base__nb_objects, nb_prior + 1)
+        nb_prior = Rectangle._Base__nb_objects
+        r94 = Rectangle.create(id=94, height=4)
+        self.assertEqual(str(r94), "[Rectangle] (94) 0/0 - 1/4")
+        self.assertEqual(Rectangle._Base__nb_objects, nb_prior + 1)
+        nb_prior = Rectangle._Base__nb_objects
+        r95 = Rectangle.create(id=95, x=5, y=5)
+        self.assertEqual(str(r95), "[Rectangle] (95) 5/5 - 1/1")
+        self.assertEqual(Rectangle._Base__nb_objects, nb_prior + 1)
+        nb_prior = Rectangle._Base__nb_objects
+        r96 = Rectangle.create(id=96, width=5, height=6)
+        self.assertEqual(str(r96), "[Rectangle] (96) 0/0 - 5/6")
+        self.assertEqual(Rectangle._Base__nb_objects, nb_prior + 1)
+        nb_prior = Rectangle._Base__nb_objects
+        r97 = Rectangle.create(id=97, height=7, width=6, y=5, x=4)
+        self.assertEqual(str(r97), "[Rectangle] (97) 4/5 - 6/7")
+        self.assertEqual(Rectangle._Base__nb_objects, nb_prior + 1)
+        nb_prior = Rectangle._Base__nb_objects
+        r98 = Rectangle.create(x=98, y=99)
+        self.assertEqual(str(r98),
+                         "[Rectangle] ({:d}) 98/99 - 1/1".format(nb_prior + 1))
+        self.assertEqual(Rectangle._Base__nb_objects, nb_prior + 1)
+        nb_prior = Rectangle._Base__nb_objects
+        r99 = Rectangle.create(height=99, width=98)
+        self.assertEqual(str(r99),
+                         "[Rectangle] ({:d}) 0/0 - 98/99".format(nb_prior + 1))
+        self.assertEqual(Rectangle._Base__nb_objects, nb_prior + 1)
+        nb_prior = Rectangle._Base__nb_objects
+        r100 = Rectangle.create()
+        self.assertEqual(str(r100),
+                         "[Rectangle] ({:d}) 0/0 - 1/1".format(nb_prior + 1))
         self.assertEqual(Rectangle._Base__nb_objects, nb_prior + 1)
 
-        """with self.assertRaises(TypeError):
-        """
-
     def test_load_from_file(self):
-        with self.assertRaises(FileNotFoundError):
-            Rectangle.load_from_file()
+        self.assertEqual(type(Rectangle.load_from_file()), type([]))
 
-"""
+
 if __name__ == "__main__":
     unittest.main()
-"""

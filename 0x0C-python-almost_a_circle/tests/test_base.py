@@ -46,8 +46,7 @@ class TestBase(unittest.TestCase):
             Base.create()
 
     def test_load_from_file(self):
-        with self.assertRaises(FileNotFoundError):
-            Base.load_from_file()
+        self.assertEqual(type(Base.load_from_file()), type([]))
 
 
 if __name__ == "__main__":
