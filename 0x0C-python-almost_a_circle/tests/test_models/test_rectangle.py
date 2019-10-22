@@ -57,7 +57,7 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(self.r201.x, 1)
         self.assertEqual(self.r201.y, 1)
 
-    def test_setters(self):
+    def test_width_setter(self):
         with self.assertRaises(TypeError):
             self.r2.width = '1'
         with self.assertRaises(TypeError):
@@ -72,16 +72,76 @@ class TestRectangle(unittest.TestCase):
             self.r2.width = True
         with self.assertRaises(ValueError):
             self.r2.width = -5
+        with self.assertRaises(ValueError):
+            self.r2.width = 0
         self.r2.width = 5
         self.assertEqual(self.r2.width, 5)
 
-    """
-        (width, 
-         height,
-         x,
-         y)
+    def test_height_setter(self):
+        with self.assertRaises(TypeError):
+            self.r2.height = '1'
+        with self.assertRaises(TypeError):
+            self.r2.height = [1, 2]
+        with self.assertRaises(TypeError):
+            self.r2.height = {1, 2}
+        with self.assertRaises(TypeError):
+            self.r2.height = {1: 2}
+        with self.assertRaises(TypeError):
+            self.r2.height = 1, 2
+        with self.assertRaises(TypeError):
+            self.r2.height = True
+        with self.assertRaises(ValueError):
+            self.r2.height = -5
+        with self.assertRaises(ValueError):
+            self.r2.height = 0
+        self.r2.height = 5
+        self.assertEqual(self.r2.height, 5)
 
-        test_area(self)
+    def test_x_setter(self):
+        with self.assertRaises(TypeError):
+            self.r2.x = '1'
+        with self.assertRaises(TypeError):
+            self.r2.x = [1, 2]
+        with self.assertRaises(TypeError):
+            self.r2.x = {1, 2}
+        with self.assertRaises(TypeError):
+            self.r2.x = {1: 2}
+        with self.assertRaises(TypeError):
+            self.r2.x = 1, 2
+        with self.assertRaises(TypeError):
+            self.r2.x = True
+        with self.assertRaises(ValueError):
+            self.r2.x = -5
+        self.r2.x = 5
+        self.assertEqual(self.r2.x, 5)
+        self.r2.x = 0
+        self.assertEqual(self.r2.x, 0)
+
+    def test_y_setter(self):
+        with self.assertRaises(TypeError):
+            self.r2.y = '1'
+        with self.assertRaises(TypeError):
+            self.r2.y = [1, 2]
+        with self.assertRaises(TypeError):
+            self.r2.y = {1, 2}
+        with self.assertRaises(TypeError):
+            self.r2.y = {1: 2}
+        with self.assertRaises(TypeError):
+            self.r2.y = 1, 2
+        with self.assertRaises(TypeError):
+            self.r2.y = True
+        with self.assertRaises(ValueError):
+            self.r2.y = -5
+        self.r2.y = 5
+        self.assertEqual(self.r2.y, 5)
+        self.r2.y = 0
+        self.assertEqual(self.r2.y, 0)
+
+    def test_area(self):
+        self.assertEqual(self.r1.area(), 1)
+        self.assertEqual(self.r200.area(), 200)
+
+    """
         test_display(self)
         test_update(self)
         test_to_dictionary(self)
