@@ -15,6 +15,10 @@ class TestBase(unittest.TestCase):
         cls.b21 = Base(21)
         cls.bNeg3 = Base(-3)
 
+    @classmethod
+    def tearDownClass(cls):
+        Base._Base__nb_objects = 0
+
     def test_init(self):
         self.assertEqual(self.b1.id, 1)
         self.assertEqual(self.b2.id, 2)
