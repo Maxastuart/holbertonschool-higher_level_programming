@@ -2,7 +2,7 @@
 """ Unittest for 0x0C-python-almost_a_circle Base class
 """
 import unittest
-from base import Base
+from models.base import Base
 
 
 class TestBase(unittest.TestCase):
@@ -20,22 +20,31 @@ class TestBase(unittest.TestCase):
         self.assertEqual(self.b2.id, 2)
         self.assertEqual(Base._Base__nb_objects, 2)
 
-"""
     def test_to_json_string(self):
-        
+        self.assertEqual(Base.to_json_string(None), "[]")
+        self.assertEqual(Base.to_json_string([]), "[]")
+        self.assertEqual(Base.to_json_string([{}]), "[{}]")
+        self.assertEqual(Base.to_json_string([{}, {}]), "[{}, {}]")
 
     def test_from_json_string(self):
-        
+        self.assertEqual(Base.from_json_string(None), [])
+        self.assertEqual(Base.from_json_string(""), [])
+        self.assertEqual(Base.from_json_string("[]"), [])
+        self.assertEqual(Base.from_json_string("[{}]"), [{}])
+        self.assertEqual(Base.from_json_string("[{}, {}]"), [{}, {}])
 
     def test_save_to_file(self):
-        
+        with self.assertRaises(TypeError):
+            Base.save_to_file()
 
     def test_create(self):
-        
+        with self.assertRaises(TypeError):
+            Base.create()
 
-    def test_load_from_file:
-        
-"""
+    def test_load_from_file(self):
+        with self.assertRaises(FileNotFoundError):
+            Base.load_from_file()
+
 
 if __name__ == "__main__":
     unittest.main()

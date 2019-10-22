@@ -22,7 +22,7 @@ class Base:
         """Returns the JSON string representation of list_dictionaries.
         list_dictionaries: a list of dictionaries.
         """
-        if list_dictionaries is None or len(list_dictionaries) < 1:
+        if list_dictionaries is None or list_dictionaries == []:
             return "[]"
         return json.dumps(list_dictionaries)
 
@@ -31,8 +31,8 @@ class Base:
         """Returns the list of the JSON string representation.
         json_string: a string representing a list of dictionaries.
         """
-        if json_string is None:
-            return "[]"
+        if json_string is None or json_string is "":
+            return []
         return json.loads(json_string)
 
     @classmethod
