@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 """ Unittest for 0x0C-python-almost_a_circle Rectangle class
 """
+import io
+import sys
 import unittest
 from models.rectangle import Rectangle
 
@@ -141,10 +143,55 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(self.r1.area(), 1)
         self.assertEqual(self.r200.area(), 200)
 
+    def test_display(self):
+        capturedOutput1 = io.StringIO()
+        sys.stdout = capturedOutput1
+        self.r1.display()
+        sys.stdout = sys.__stdout__
+        self.assertEqual(capturedOutput1.getvalue(), "#\n")
+        capturedOutput2 = io.StringIO()
+        sys.stdout = capturedOutput2
+        self.r2.update(2, 2, 2, 2, 2)
+        self.r2.display()
+        sys.stdout = sys.__stdout__
+        self.assertEqual(capturedOutput2.getvalue(), "\n\n  ##\n  ##\n")
+
+    def test_update_args(self):
+        self.r2.update(2)
+        self.assertEqual(self.r2.id, 2)
+        self.r2.update(22)
+        self.assertEqual(self.r2.id, 22)
+        self.r2.update(2, 2, 2, 2, 2)
+        self.assertEqual(str(self.r2), "[Rectangle] (2) 2/2 - 2/2")
+        self.r2.update(2, 3)
+        self.assertEqual(str(self.r2), "[Rectangle] (2) 2/2 - 3/2")
+        self.r2.update(2, 3, 4)
+        self.assertEqual(str(self.r2), "[Rectangle] (2) 2/2 - 3/4")
+        self.r2.update(2, 3, 4, 5)
+        self.assertEqual(str(self.r2), "[Rectangle] (2) 5/2 - 3/4")
+        self.r2.update(2, 3, 4, 5, 6, 7)
+        self.assertEqual(str(self.r2), "[Rectangle] (2) 5/6 - 3/4")
+
+    def test_update_kwargs(self):
+        self.r2.update(id=7)
+        self.assertEqual(self.r2.id, 7)
+        self.r2.update(width=8, id=8)
+        self.assertEqual(self.r2.id, 8)
+        self.assertEqual(self.r2.width, 8)
+        self.r2.update(height=9, width=9, id=9)
+        self.assertEqual(self.r2.id, 9)
+        self.assertEqual(self.r2.width, 9)
+        self.assertEqual(self.r2.height, 9)
+        self.r2.update(x=10, height=10, width=10, id=10)
+        self.assertEqual(self.r2.id, 10)
+        self.assertEqual(self.r2.width, 10)
+        self.assertEqual(self.r2.height, 10)
+        self.assertEqual(self.r2.x, 10)
+        self.r2.update(x=2, height=2, y=2, width=2, id=2)
+        self.assertEqual(str(self.r2), "[Rectangle] (2) 2/2 - 2/2")
+
     """
-        test_display(self)
-        test_update(self)
-        test_to_dictionary(self)
+        test_to_dictionary(self):
 """
 
     def test_to_json_string(self):
@@ -168,7 +215,6 @@ class TestRectangle(unittest.TestCase):
     def test_create(self):
         with self.assertRaises(TypeError):
             Rectangle.create()
-    
 
     def test_load_from_file(self):
         with self.assertRaises(FileNotFoundError):
