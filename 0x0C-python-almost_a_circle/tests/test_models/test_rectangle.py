@@ -17,6 +17,10 @@ class TestRectangle(unittest.TestCase):
         cls.r200 = Rectangle(20, 10, id=200)
         cls.r201 = Rectangle(20, 10, 1, 1)
 
+    @classmethod
+    def tearDownClass(cls):
+        Rectangle._Base__nb_objects = 0
+
     def test_init(self):
         with self.assertRaises(TypeError):
             Rectangle()
@@ -42,7 +46,6 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(self.r2.id, 2)
         self.assertEqual(self.r200.id, 200)
         self.assertEqual(self.r201.id, 3)
-        self.assertEqual(Rectangle._Base__nb_objects, 3)
 
     def test__str__(self):
         self.assertEqual(str(self.r1), "[Rectangle] (1) 0/0 - 1/1")
@@ -190,9 +193,11 @@ class TestRectangle(unittest.TestCase):
         self.r2.update(x=2, height=2, y=2, width=2, id=2)
         self.assertEqual(str(self.r2), "[Rectangle] (2) 2/2 - 2/2")
 
-    """
-        test_to_dictionary(self):
-"""
+    def test_to_dictionary(self):
+        self.assertEqual(self.r1.to_dictionary(),
+                         {'id': 1, 'width': 1, 'height': 1, 'x': 0, 'y': 0})
+        self.assertEqual(self.r201.to_dictionary(),
+                         {'id': 3, 'width': 20, 'height': 10,'x': 1, 'y': 1})
 
     def test_to_json_string(self):
         self.assertEqual(Rectangle.to_json_string(None), "[]")
@@ -211,15 +216,20 @@ class TestRectangle(unittest.TestCase):
         with self.assertRaises(TypeError):
             Rectangle.save_to_file()
 
-    """
     def test_create(self):
-        with self.assertRaises(TypeError):
-            Rectangle.create()
+        nb_prior = Rectangle._Base__nb_objects
+        r98 = Rectangle.create(id=98)
+        self.assertEqual(str(r98), "[Rectangle] (98) 0/0 - 1/1")
+        self.assertEqual(Rectangle._Base__nb_objects, nb_prior + 1)
+
+        """with self.assertRaises(TypeError):
+        """
 
     def test_load_from_file(self):
         with self.assertRaises(FileNotFoundError):
             Rectangle.load_from_file()
-"""
 
+"""
 if __name__ == "__main__":
     unittest.main()
+"""
