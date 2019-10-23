@@ -4,6 +4,7 @@
 import io
 import sys
 import unittest
+from models.base import Base
 from models.rectangle import Rectangle
 
 
@@ -20,6 +21,7 @@ class TestRectangle(unittest.TestCase):
     @classmethod
     def tearDownClass(cls):
         Rectangle._Base__nb_objects = 0
+        Base._Base__nb_objects = 0
 
     def test_init(self):
         with self.assertRaises(TypeError):

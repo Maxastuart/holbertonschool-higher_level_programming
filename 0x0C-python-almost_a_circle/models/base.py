@@ -51,7 +51,10 @@ class Base:
         """Returns an instance with all attributes already set.
         dictionary: key/value pairs of attributes of the class.
         """
-        instance = cls(1, 1)
+        if cls.__name__ is 'Square':
+            instance = cls(1)
+        else:
+            instance = cls(1, 1)
         instance.update(**dictionary)
         return instance
 
