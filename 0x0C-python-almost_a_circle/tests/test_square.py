@@ -36,7 +36,7 @@ class TestSquare(unittest.TestCase):
             Square(1, -1, 1)
         with self.assertRaises(ValueError):
             Square(1, 1, -1)
- 
+
     def test_id(self):
         self.assertEqual(self.s1.id, 1)
         self.assertEqual(self.s2.id, 2)
