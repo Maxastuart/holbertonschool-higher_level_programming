@@ -42,8 +42,9 @@ class Base:
         """
         with open(cls.__name__ + ".json", 'w', encoding="UTF-8") as myfile:
             mylist = []
-            for obj in list_objs:
-                mylist.append(obj.to_dictionary())
+            if list_objs is not None:
+                for obj in list_objs:
+                    mylist.append(obj.to_dictionary())
             myfile.write(cls.to_json_string(mylist))
 
     @classmethod
