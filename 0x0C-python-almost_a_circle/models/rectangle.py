@@ -114,5 +114,6 @@ class Rectangle(Base):
                 setattr(self, key, value)
 
     def to_dictionary(self):
+        """ Returns the dictionary version of self. """
         return dict(id=self.id, width=self.width, height=self.height,
                     x=self.x, y=self.y)
