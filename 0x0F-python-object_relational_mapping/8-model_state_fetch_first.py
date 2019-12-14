@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-""" Lists all State objects from the database
+""" Lists first State object from the database
 """
 import sys
 from model_state import Base, State
