@@ -1,12 +1,15 @@
 #!/usr/bin/node
 'use strict';
-let i = 0;
-while (i < process.argv[2]) {
-  let n = 0; let x = '';
-  while (n < process.argv[2]) {
-    x += 'X';
-    n++;
+const n = parseInt(process.argv[2]); let s = ''; let x = 0; let y = 0;
+if (isNaN(n)) {
+  console.log('Missing size');
+} else {
+  while (x < n) {
+    s += 'X';
+    x++;
   }
-  console.log(x);
-  i++;
+  while (y < n) {
+    console.log(s);
+    y++;
+  }
 }
